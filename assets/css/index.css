@@ -1,0 +1,74 @@
+@import './reset.css';
+@import './variables.css';
+
+/*  */
+body {
+  min-width: 360px;
+  font-family: var(--fontFamily-NeueMachina);
+  background-color: var(--bgColor);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1280px;
+  box-sizing: content-box;
+  padding: 0 39px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.tel {
+  color: #fff;
+  font-family: var(--fontFamily-RFDewi);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 110%;
+  letter-spacing: 0.44px;
+}
+
+.link {
+  color: white;
+  transition: 0.3s;
+}
+
+/*  */
+.close_modal {
+  position: absolute;
+  top: 0px;
+  right: -62px;
+  cursor: pointer;
+}
+
+/* ======================== Медиа-запросы */
+@media (hover: hover) {
+  .link:hover {
+    color: #40b6b7;
+  }
+}
+
+@media (hover: none) {
+  .link:active {
+    color: #40b6b7;
+  }
+}
+
+/*  */
+@media (max-width: 768px) {
+  .close_modal {
+    top: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .close_modal {
+    width: 32px;
+  }
+}
