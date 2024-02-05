@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  nuxt-app-prod:
+    image: nuxt-app-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: nuxt-prod
+    restart: unless-stopped
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
