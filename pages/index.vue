@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useSeoMeta({
+  title: 'Главная'
+})
+</script>
 
 <template>
   <div>
-    <Header />
+    <HeaderParticle />
     <Services />
     <Footer />
   </div>

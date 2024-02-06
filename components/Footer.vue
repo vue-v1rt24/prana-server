@@ -22,7 +22,7 @@ onMounted(() => {
 
           <div class="footer__copy">
             <p class="footer__desc">LLC PRANA IT</p>
-            <a class="footer__desc" href="#">Политика конфиденциальности</a>
+            <NuxtLink class="footer__desc" to="/policy">Политика конфиденциальности</NuxtLink>
           </div>
         </div>
 
