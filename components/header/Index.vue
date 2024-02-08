@@ -2,7 +2,7 @@
 import type { UiModal, UiModalsStartProject } from '#build/components';
 
 const viewport = useViewport();
-const route = useRoute()
+const route = useRoute();
 
 //
 const modal = ref<InstanceType<typeof UiModal>>();

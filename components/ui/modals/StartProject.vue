@@ -3,6 +3,9 @@ import { useIMask } from 'vue-imask';
 import { z, type ZodFormattedError } from 'zod';
 
 //
+const mail = useMail();
+
+//
 const emit = defineEmits<{
   sendForm: [];
 }>();
@@ -31,7 +34,7 @@ const User = z.object({
 });
 
 //
-const contactHandler = () => {
+const contactHandler = async () => {
   try {
     const resValid = User.safeParse(formData);
 
@@ -42,7 +45,16 @@ const contactHandler = () => {
     }
 
     if (resValid.success) {
-      // console.log(formData);
+      await mail.send({
+        subject: 'Заявка с сайта pranait.ru',
+        // text: 'Текстовое сообщение',
+        html: `
+          <div>Имя: <strong>${formData.name}</strong></div>
+          <div>Номер телефона: <strong>${formData.tel}</strong></div>
+          <div>Выбранная услуга: <strong>${formData.select}</strong></div>
+        `,
+      });
+
       emit('sendForm');
     }
   } catch (error) {
@@ -121,7 +133,7 @@ defineExpose({
 
               <li
                 class="form__select_hide_val_item"
-                @click="(formData.select = 'Фото'), (openServices = false)"
+                @click="(formData.select = 'Фото/Видео'), (openServices = false)"
               >
                 Фото/Видео
               </li>
