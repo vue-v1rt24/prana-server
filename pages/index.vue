@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Главная'
-})
+  title: 'Главная',
+});
 </script>
 
 <template>
