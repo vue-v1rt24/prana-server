@@ -19,7 +19,7 @@
             <p class="cart__desc">Современные и функциональные сайты под разные задачи бизнеса</p>
 
             <UiButtonTransparent
-              tag="a"
+              tag="link"
               link="https://prana-it.ru/landing"
               title="Перейти"
               class="cart__btn"
@@ -43,7 +43,7 @@
             <p class="cart__desc">Привлекательный визуальный образ для вашей компании или бренда</p>
 
             <UiButtonTransparent
-              tag="a"
+              tag="link"
               link="https://prana-it.ru/branding"
               title="Перейти"
               class="cart__btn"

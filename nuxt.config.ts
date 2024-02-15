@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
+      meta: [{ name: 'format-detection', content: 'telephone=no' }],
       htmlAttrs: {
         lang: 'ru',
       },
@@ -18,8 +19,8 @@ export default defineNuxtConfig({
   // ============ Для отправки почты. Модуль: nuxt-mail
   mail: {
     message: {
-      from: 'rublevrus@mail.ru',
-      to: 'rublevrus@mail.ru', // вот так нескольким получателям: 'rublevrus@mail.ru, rrublyov@yandex.ru' либо ['rublevrus@mail.ru, rrublyov@yandex.ru']
+      from: 'pranaittech@yandex.ru',
+      to: 'info@pranait.ru', // вот так нескольким получателям: 'rublevrus@mail.ru, rrublyov@yandex.ru' либо ['rublevrus@mail.ru, rrublyov@yandex.ru']
     },
     smtp: {
       host: 'smtp.mail.ru',

@@ -20,6 +20,9 @@
   --colorTextOpacity06: rgba(255, 255, 255, 0.6);
   --colorTextOpacity08: rgba(255, 255, 255, 0.8);
 
+  --colorBlackTextOpacity06: rgba(0, 0, 0, 0.6);
+  --colorBlackTextOpacity08: rgba(0, 0, 0, 0.8);
+
   --border_01: 1px solid rgba(255, 255, 255, 0.1);
   --border_02: 1px solid rgba(255, 255, 255, 0.2);
 }

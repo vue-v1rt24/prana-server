@@ -1,38 +1,33 @@
 <script setup lang="ts">
-import type { UiModal, UiModalsStartProject } from '#build/components';
+const props = withDefaults(
+  defineProps<{
+    mode?: 'white' | 'dark';
+  }>(),
+  {
+    mode: 'dark',
+  },
+);
 
+//
 const viewport = useViewport();
 const route = useRoute();
-
-//
-const modal = ref<InstanceType<typeof UiModal>>();
-const startForm = ref<InstanceType<typeof UiModalsStartProject>>();
-
-//
-const openModal = () => {
-  modal.value?.openModal();
-};
-
-const closeModalEvent = () => {
-  startForm.value?.resetForm();
-};
-
-const sendForm = () => {
-  modal.value?.closeModal();
-};
 </script>
 
 <template>
-  <header class="header_bx">
+  <header :class="['header_bx', { white_mode: mode === 'white' }]">
     <div class="container">
       <div class="header">
         <!--  -->
         <div class="logo">
           <NuxtLink v-if="route.name !== '/'" to="/">
-            <img src="/img/logo.svg" alt="" />
+            <img v-if="mode === 'dark'" src="/img/logo.svg" alt="" />
+            <img v-if="mode === 'white'" src="/img/logo-white.svg" alt="" />
           </NuxtLink>
 
-          <img v-else src="/img/logo.svg" alt="" />
+          <template v-else>
+            <img v-if="mode === 'dark'" src="/img/logo.svg" alt="" />
+            <img v-if="mode === 'white'" src="/img/logo-white.svg" alt="" />
+          </template>
         </div>
 
         <!--  -->
@@ -47,30 +42,15 @@ const sendForm = () => {
           >
             8 800 500 81 54
           </a>
-
-          <!--  -->
-          <UiButtonTransparent
-            title="Начать проект"
-            transparent
-            class="UiButtonTransparent"
-            @click="openModal"
-          />
         </div>
       </div>
     </div>
   </header>
-
-  <!-- Модальное окно -->
-  <Teleport to="body">
-    <UiModal ref="modal" max-width="540px" @close-modal-event="closeModalEvent">
-      <UiModalsStartProject ref="startForm" @send-form="sendForm" />
-    </UiModal>
-  </Teleport>
 </template>
 
 <style lang="css" scoped>
 .header_bx {
-  padding: 40px 0;
+  padding: 40px 0 52px 0;
 }
 
 /*  */
@@ -92,14 +72,6 @@ const sendForm = () => {
   column-gap: 62px;
 }
 
-/*  */
-.UiButtonTransparent {
-  width: 224px;
-  height: 60px;
-  font-size: 14px;
-  border-radius: 16px;
-}
-
 /* ================ Медиа-запросы */
 @media (max-width: 768px) {
   .header_bx {
@@ -109,28 +81,15 @@ const sendForm = () => {
   .logo {
     width: 210px;
   }
-
-  .UiButtonTransparent {
-    width: 210px;
-    font-size: 13px;
-  }
 }
 
 @media (max-width: 576px) {
   .header_bx {
-    padding: 20px 0;
-  }
-
-  .header {
-    justify-content: center;
+    padding: 15px 0 32px 0;
   }
 
   .logo {
     width: 170px;
-  }
-
-  .UiButtonTransparent {
-    display: none;
   }
 }
 </style>

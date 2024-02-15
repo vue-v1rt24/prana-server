@@ -5,11 +5,16 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
-    <Header />
+  <div class="pages_policy">
+    <Header mode="dark" />
 
-    <div class="policy">
+    <main class="policy">
       <div class="container">
+        <!-- <UiBreadcrumbs
+          :links="[{ title: 'Главная', path: '/' }, { title: 'Политика конфиденциальности' }]"
+          mode="white"
+        /> -->
+
         <h1 class="policy__title">
           Политика в отношении обработки <br />
           персональных данных
@@ -236,7 +241,7 @@ useSeoMeta({
           Интернет по адресу https://pranait.ru/policy.
         </div>
       </div>
-    </div>
+    </main>
 
     <Footer />
   </div>

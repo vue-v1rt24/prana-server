@@ -18,7 +18,7 @@ const props = defineProps<{
     <div class="cart__text">
       <h2 class="cart_title">{{ title }}</h2>
       <p class="cart__desc">{{ desc }}</p>
-      <UiButtonTransparent tag="a" :link="link" title="Перейти" class="cart__btn" />
+      <UiButtonTransparent tag="link" :link="link" title="Перейти" class="cart__btn" />
     </div>
   </div>
 </template>

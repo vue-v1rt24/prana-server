@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useIMask } from 'vue-imask';
 import { z, type ZodFormattedError } from 'zod';
 
 //
@@ -9,11 +8,6 @@ const mail = useMail();
 const emit = defineEmits<{
   sendForm: [];
 }>();
-
-//
-const { el } = useIMask({
-  mask: '+{7} (000) 000-00-00',
-});
 
 //
 const openServices = ref<boolean>(false);
@@ -29,7 +23,7 @@ const formError = ref<ZodFormattedError<typeof formData>>({ _errors: [] });
 
 const User = z.object({
   name: z.string().min(3),
-  tel: z.string().length(19),
+  tel: z.string().length(18),
   select: z.enum(['Дизайн', 'Разработка сайтов', 'Фото/Видео', 'Продвижение']),
 });
 
@@ -97,12 +91,13 @@ defineExpose({
         />
 
         <input
-          ref="el"
           class="form__inp"
           :class="{ errorField: formError.tel }"
-          type="text"
+          type="tel"
           placeholder="Номер телефона"
           v-model="formData.tel"
+          v-maska
+          data-maska="+7 (###) ###-##-##"
         />
 
         <div :class="['form__select', { open: openServices }]">

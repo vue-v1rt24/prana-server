@@ -1,7 +1,63 @@
 <script setup lang="ts">
+import type { UiModal, UiModalsStartProject } from '#build/components';
+
+//
+const props = withDefaults(
+  defineProps<{
+    mode?: 'white' | 'dark';
+  }>(),
+  {
+    mode: 'dark',
+  },
+);
+
+//
+const route = useRoute();
+
+//
 const footerEmail = ref<HTMLDivElement | null>(null);
 const footerRight = ref<HTMLDivElement | null>(null);
 
+const modal = ref<InstanceType<typeof UiModal>>();
+const modalSuccess = ref<InstanceType<typeof UiModal>>();
+const startForm = ref<InstanceType<typeof UiModalsStartProject>>();
+
+//
+type TypeMode = {
+  mode: 'white' | 'dark';
+  link: boolean;
+};
+
+const modalSuccessMode = computed<TypeMode>(() => {
+  let mode: 'white' | 'dark' = 'dark';
+  let link = false;
+
+  if (route.name === 'brief') {
+    mode = 'white';
+    link = true;
+  }
+
+  return {
+    mode,
+    link,
+  };
+});
+
+//
+const openModal = () => {
+  modal.value?.openModal();
+};
+
+const closeModalEvent = () => {
+  startForm.value?.resetForm();
+};
+
+const sendForm = () => {
+  modal.value?.closeModal();
+  modalSuccess.value?.openModal();
+};
+
+//
 onMounted(() => {
   if (window.matchMedia('(max-width: 992px)').matches) {
     if (footerEmail.value && footerRight.value) {
@@ -12,7 +68,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <footer class="footer_bx">
+  <footer :class="['footer_bx', { white_mode: mode === 'white' }]">
     <div class="container">
       <div class="footer">
         <div class="footer__left">
@@ -41,6 +97,20 @@ onMounted(() => {
         <Social class="footer__soc" />
       </div>
     </div>
+
+    <button @click="openModal" class="open_modal" hidden>Открыть</button>
+
+    <Teleport to="body">
+      <!-- Модальное окно -->
+      <UiModal ref="modal" max-width="540px" @close-modal-event="closeModalEvent">
+        <UiModalsStartProject ref="startForm" @send-form="sendForm" />
+      </UiModal>
+
+      <!-- Модальное окно после успешной отправки -->
+      <UiModal ref="modalSuccess" max-width="614px">
+        <UiModalsOrderSuccess :mode="modalSuccessMode.mode" :link="modalSuccessMode.link" />
+      </UiModal>
+    </Teleport>
   </footer>
 </template>
 
@@ -77,6 +147,14 @@ onMounted(() => {
   font-weight: 300;
   line-height: 21px;
   color: var(--colorTextOpacity06);
+}
+
+.white_mode .footer__left .footer__desc {
+  color: var(--colorBlackTextOpacity06);
+}
+
+.white_mode .footer__right .footer__desc {
+  color: var(--colorBlackTextOpacity08);
 }
 
 .footer__copy .footer__desc {

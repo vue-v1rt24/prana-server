@@ -1,14 +1,18 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    tag?: string;
+    tag?: 'button' | 'link';
     link?: string;
+    arrow?: boolean;
     transparent?: boolean;
     title: string;
+    mode?: 'white' | 'dark';
   }>(),
   {
     tag: 'button',
     link: '#',
+    arrow: true,
+    mode: 'dark',
   },
 );
 
@@ -17,21 +21,25 @@ const bgColor = computed(() => (props.transparent ? 'rgba(64, 182, 183, 0.1)' : 
 </script>
 
 <template>
-  <button v-if="tag === 'button'" class="btn_bg_1" type="button">
-    <span>{{ title }}</span>
+  <button
+    v-if="tag === 'button'"
+    :class="['btn_bg_1', { white_mode: mode === 'white' }]"
+    type="button"
+  >
+    <span class="btn_bg_1__title">{{ title }}</span>
 
-    <span class="btn__arrow">
+    <span v-if="arrow" class="btn__arrow">
       <ImageArrow width="12" height="12" class="arrow" />
     </span>
   </button>
 
-  <a v-else class="btn_bg_1" :href="link">
-    <span>{{ title }}</span>
+  <NuxtLink v-else :class="['btn_bg_1', { white_mode: mode === 'white' }]" :to="link">
+    <span class="btn_bg_1__title">{{ title }}</span>
 
-    <span class="btn__arrow">
+    <span v-if="arrow" class="btn__arrow">
       <ImageArrow width="12" height="12" class="arrow" />
     </span>
-  </a>
+  </NuxtLink>
 </template>
 
 <style lang="css" scoped>
@@ -50,6 +58,10 @@ const bgColor = computed(() => (props.transparent ? 'rgba(64, 182, 183, 0.1)' : 
   align-items: center;
   column-gap: 12px;
   transition: background-color 0.3s;
+}
+
+.btn_bg_1.white_mode {
+  color: #030810;
 }
 
 /*  */

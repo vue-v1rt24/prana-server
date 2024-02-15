@@ -5,7 +5,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
+  <div class="pages_index">
     <HeaderParticle />
     <Services />
     <Footer />

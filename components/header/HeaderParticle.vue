@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { UiModal, UiModalsStartProject } from '#build/components';
 import { particle } from '~/assets/libs/particle/particle';
 
 const viewport = useViewport();
@@ -7,20 +6,19 @@ const viewport = useViewport();
 //
 const particleRef = ref();
 const decisionsSection = ref();
-const modal = ref<InstanceType<typeof UiModal>>();
-const startForm = ref<InstanceType<typeof UiModalsStartProject>>();
+const isInit = ref(false);
+const elem = ref<HTMLElement | null>(null);
 
 //
 const openModal = () => {
-  modal.value?.openModal();
-};
+  if (!isInit.value) {
+    isInit.value = true;
+    elem.value = document.querySelector<HTMLButtonElement>('.open_modal');
+  }
 
-const closeModalEvent = () => {
-  startForm.value?.resetForm();
-};
-
-const sendForm = () => {
-  modal.value?.closeModal();
+  if (elem.value) {
+    elem.value.click();
+  }
 };
 
 onMounted(() => {
@@ -55,7 +53,7 @@ onMounted(() => {
             title="Начать проект"
             transparent
             class="UiButtonTransparent"
-            @click="openModal"
+            @click="$router.push('/brief')"
           />
         </div>
       </div>
@@ -91,13 +89,6 @@ onMounted(() => {
       <ImageEllipseHeader />
     </div>
   </section>
-
-  <!-- Модальное окно -->
-  <Teleport to="body">
-    <UiModal ref="modal" max-width="540px" @close-modal-event="closeModalEvent">
-      <UiModalsStartProject ref="startForm" @send-form="sendForm" />
-    </UiModal>
-  </Teleport>
 </template>
 
 <style lang="css" scoped>
@@ -129,6 +120,8 @@ onMounted(() => {
 }
 
 .decisions {
+  position: relative;
+  z-index: 2;
   padding-top: 220px;
   user-select: none;
 }
@@ -163,7 +156,7 @@ onMounted(() => {
 .particle {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 1;
 }
 
 /*  */
@@ -249,18 +242,22 @@ onMounted(() => {
     padding: 20px 0;
   }
 
-  .header {
-    justify-content: center;
-  }
-
   .logo {
     width: 170px;
   }
 
+  /*  */
   .UiButtonTransparent {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .UiButtonTransparent :deep(.btn_bg_1__title) {
     display: none;
   }
 
+  /*  */
   .decisions_sec {
     height: 457px;
     margin-bottom: 120px;
