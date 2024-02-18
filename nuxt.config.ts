@@ -20,15 +20,15 @@ export default defineNuxtConfig({
   mail: {
     message: {
       from: 'pranaittech@yandex.ru',
-      to: 'info@pranait.ru', // вот так нескольким получателям: 'rublevrus@mail.ru, rrublyov@yandex.ru' либо ['rublevrus@mail.ru, rrublyov@yandex.ru']
+      to: 'info@pranait.ru', // вот так нескольким получателям: 'pranaittech@mail.ru, pranaittech@yandex.ru' либо ['info@pranait.ru, pranaittech@yandex.ru']
     },
     smtp: {
-      host: 'smtp.mail.ru',
+      host: 'smtp.yandex.ru',
       port: 465,
       secure: true,
       auth: {
-        user: 'rublevrus@mail.ru',
-        pass: 'gYgcaRrdyxwVsqK4b1Wh', // пароль для приложений. Создаётся в учётной записи почты
+        user: 'pranaittech',
+        pass: 'alngcratnnsxqqva', // пароль для приложений. Создаётся в учётной записи почты
       },
     },
   },
