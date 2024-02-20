@@ -34,8 +34,9 @@ type TypeFormData = {
   informationBlocks: string;
   examplesDesignLike: string;
   examplesDesignNotLike: string;
+  yourOwnVersion: string;
   corporateIdentity: string[];
-  moodAssociations: string;
+  moodAssociations: string[];
   availabilityPhotos: string;
   requirementsWishes: string;
   contentSite: string[];
@@ -88,8 +89,9 @@ const formData = reactive<TypeFormData>({
   informationBlocks: '',
   examplesDesignLike: '',
   examplesDesignNotLike: '',
+  yourOwnVersion: '',
   corporateIdentity: [],
-  moodAssociations: '',
+  moodAssociations: [],
   availabilityPhotos: '',
   requirementsWishes: '',
   contentSite: [],
@@ -245,6 +247,10 @@ const formHandler = async () => {
           ${
             formData.moodAssociations &&
             `<div>Настроение и ассоциации, которые должен вызвать дизайн сайта: <strong>${formData.moodAssociations}</strong></div>`
+          }
+          ${
+            formData.yourOwnVersion &&
+            `<div>Информационные блоки: <strong>${formData.yourOwnVersion}</strong></div>`
           }
           ${
             formData.availabilityPhotos &&
@@ -493,21 +499,17 @@ const resetForm = () => {
               <div class="form__checked_desc">Выберете тип сайта</div>
 
               <div class="form__checked_list">
-                <UiFormInput type="radio" label="Сайт компании" v-model="formData.radio" />
-
-                <UiFormInput
-                  type="radio"
-                  label="Сайт компании с каталогом"
-                  v-model="formData.radio"
-                />
-
-                <UiFormInput type="radio" label="Интернет-магазин" v-model="formData.radio" />
-
                 <UiFormInput
                   type="radio"
                   label="Лендинг (одностраничный рекламный сайт)"
                   v-model="formData.radio"
                 />
+
+                <UiFormInput type="radio" label="Многостраничный сайт" v-model="formData.radio" />
+
+                <UiFormInput type="radio" label="Сайт каталог" v-model="formData.radio" />
+
+                <UiFormInput type="radio" label="Интернет-магазин" v-model="formData.radio" />
               </div>
             </div>
 
@@ -729,6 +731,7 @@ const resetForm = () => {
               <div class="form__checked_list">
                 <UiFormInput type="radio" label="WordPress (бесплатная)" v-model="formData.cms" />
                 <UiFormInput type="radio" label="Битрикс (платная)" v-model="formData.cms" />
+                <UiFormInput type="radio" label="Tilda" v-model="formData.cms" />
                 <UiFormInput type="radio" label="Кастомная разработка" v-model="formData.cms" />
 
                 <UiFormInput
@@ -861,36 +864,40 @@ const resetForm = () => {
 
               <div class="form__checked_list">
                 <UiFormInput
-                  type="radio"
+                  type="checkbox"
                   label="Строгий корпоративный дизайн"
                   v-model="formData.moodAssociations"
                 />
 
                 <UiFormInput
-                  type="radio"
+                  type="checkbox"
                   label="Яркий, броский дизайн"
                   v-model="formData.moodAssociations"
                 />
 
                 <UiFormInput
-                  type="radio"
+                  type="checkbox"
                   label="Позитивный и веселый"
                   v-model="formData.moodAssociations"
                 />
 
                 <UiFormInput
-                  type="radio"
+                  type="checkbox"
                   label="Дизайн насыщенный иллюстрациями/фотографиями"
                   v-model="formData.moodAssociations"
                 />
 
                 <UiFormInput
-                  type="radio"
+                  type="checkbox"
                   label="Минималистичный дизайн. Упор на функциональность"
                   v-model="formData.moodAssociations"
                 />
 
-                <UiFormInput type="radio" label="Другое" v-model="formData.moodAssociations" />
+                <UiFormInput
+                  type="textarea"
+                  label="Свой вариант"
+                  v-model="formData.yourOwnVersion"
+                />
               </div>
             </div>
 
