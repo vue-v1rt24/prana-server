@@ -5,15 +5,15 @@ services:
     image: nginxproxy/nginx-proxy
     container_name: nginx-proxy
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     volumes:
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     restart: always
-  
+
   acme-companion:
     image: nginxproxy/acme-companion
     container_name: nginx-proxy-acme
@@ -25,7 +25,7 @@ services:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: always
-  
+
   nuxt-app-prod:
     image: nuxt-app-prod
     build:

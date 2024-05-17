@@ -94,6 +94,12 @@ onMounted(() => {
           </div>
         </div>
 
+        <div class="footer__arda">
+          <a href="https://arda.digital" target="_blank">
+            <img src="/img/arda.svg" alt="" />
+          </a>
+        </div>
+
         <Social class="footer__soc" />
       </div>
     </div>
@@ -181,18 +187,22 @@ onMounted(() => {
   display: none;
 }
 
+/*  */
+.footer__arda {
+  padding-top: 18px;
+}
+
 /* =========== Медиа запросы */
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .footer__left {
     width: 100%;
   }
 
   .footer__email {
-    margin-bottom: 32px;
+    margin-bottom: 74px;
   }
 
   .footer__copy {
-    justify-content: space-between;
     margin-top: 52px;
   }
 
@@ -202,8 +212,14 @@ onMounted(() => {
   }
 
   .footer__right {
+    position: absolute;
+    top: 66px;
     column-gap: 52px;
     padding-top: 0;
+  }
+
+  .footer__arda {
+    padding-top: 143px;
   }
 
   /*  */
@@ -215,7 +231,11 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+  }
+
   .footer__left {
     text-align: center;
   }
@@ -227,13 +247,21 @@ onMounted(() => {
   }
 
   .footer__right {
+    position: static;
     flex-direction: column;
     text-align: center;
     row-gap: 24px;
   }
 
   .footer__copy {
+    flex-direction: column;
+    row-gap: 20px;
     margin-top: 98px;
+  }
+
+  .footer__arda {
+    text-align: center;
+    padding-top: 30px;
   }
 
   .footer__soc {
@@ -254,7 +282,6 @@ onMounted(() => {
   }
 
   .footer__copy {
-    flex-direction: column;
     row-gap: 14px;
   }
 
