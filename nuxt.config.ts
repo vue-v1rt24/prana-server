@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
   css: ['assets/css/index.css'],
   modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail'],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   // ============ Для отправки почты. Модуль: nuxt-mail
   mail: {
