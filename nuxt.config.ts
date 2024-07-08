@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     },
   },
   css: ['assets/css/index.css'],
-  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail'],
+  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail', 'yandex-metrika-module-nuxt3'],
   devtools: { enabled: false },
 
   // ============ Для отправки почты. Модуль: nuxt-mail
@@ -31,5 +31,11 @@ export default defineNuxtConfig({
         pass: 'alngcratnnsxqqva', // пароль для приложений. Создаётся в учётной записи почты
       },
     },
+  },
+
+  // ============ Яндекс метрика
+  yandexMetrika: {
+    id: '97775377',
+    webvisor: true,
   },
 });
