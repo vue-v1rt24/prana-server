@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       secure: true,
       auth: {
         user: 'pranaittech',
-        pass: 'alngcratnnsxqqva', // пароль для приложений. Создаётся в учётной записи почты
+        pass: 'iktcqrrmgrwuizie', // пароль для приложений. Создаётся в учётной записи почты
       },
     },
   },
